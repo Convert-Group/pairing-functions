@@ -9,34 +9,34 @@ class TestSzudzikPairing(object):
 
     def test_list_pair(self):
 
-        assert pair([0, 0]) == 0
-        assert pair([0, 1]) == 1
-        assert pair([1, 0]) == 2
-        assert pair([3, 4]) == 19
-        assert pair([92, 23]) == 8579
-        assert pair([1, 2, 3]) == 33
-        assert pair([3, 4, 5]) == 385
-        assert pair([1, 2, 3, 4]) == 1126
+        assert pair(0, 0) == 0
+        assert pair(0, 1) == 1
+        assert pair(1, 0) == 2
+        assert pair(3, 4) == 19
+        assert pair(92, 23) == 8579
+        assert pair(1, 2, 3) == 33
+        assert pair(3, 4, 5) == 385
+        assert pair(1, 2, 3, 4) == 1126
 
     def test_tuple_pair(self):
 
-        assert pair((2, 2)) == 8
-        assert pair((3, 4)) == 19
-        assert pair((1, 2, 3, 4, 5)) == 1269007
+        assert pair(2, 2) == 8
+        assert pair(3, 4) == 19
+        assert pair(1, 2, 3, 4, 5) == 1269007
 
     def test_pair_exceptions(self):
 
         with pytest.raises(ValueError):
-            assert pair([1])
+            assert pair(1)
 
         with pytest.raises(ValueError):
-            assert pair([1, -2])
+            assert pair(1, -2)
 
         with pytest.raises(ValueError):
-            assert pair((1,))
+            assert pair(1,)
 
         with pytest.raises(ValueError):
-            assert pair((1, -2))
+            assert pair(1, -2)
 
 
 class TestSzudzikUnpair(object):
@@ -72,5 +72,8 @@ class TestSzudzik(object):
 
     def test_inverse_property(self):
 
-        assert unpair(pair((1, 2))) == (1, 2)
-        assert pair(unpair(33)) == 33
+        n1, n2 = unpair(pair(1, 2))
+        assert n1 == 1 and n2 == 2
+
+        n1, n2 = unpair(33)
+        assert pair(n1, n2) == 33
