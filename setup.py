@@ -8,7 +8,7 @@ import sys
 from setuptools import setup, find_packages, Command
 from shutil import rmtree
 
-# TODO: * complete upload command - upload package to PyPi using Twine
+# TODO: * complete upload command - upload package to PyPI using Twine
 # setup.py structure was based on: https://github.com/kennethreitz/setup.py/blob/master/setup.py
 
 # Package meta-data
@@ -21,7 +21,7 @@ REQUIRES_PYTHON = '>=3.5.2'
 VERSION = '0.1.0'
 
 # What packages are required for this module to be executed?
-REQUIRED = ['pytest']
+REQUIRED = ['pytest', 'pytest-cov']
 
 # What packages are optional?
 EXTRAS = {}

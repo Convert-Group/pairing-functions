@@ -48,6 +48,7 @@ coverage.xml
 *.cover
 .hypothesis/
 .pytest_cache/
+test_coverage
 
 # Translations
 *.mo
@@ -98,6 +99,9 @@ venv.bak/
 
 # Rope project settings
 .ropeproject
+
+# Jetbrains settings
+.idea
 
 # mkdocs documentation
 /site
