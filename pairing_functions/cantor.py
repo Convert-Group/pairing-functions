@@ -14,10 +14,10 @@ def pair(*numbers: int) -> int:
     and then the n_p, n3 pair is mapped to produce the final association.
     """
     if len(numbers) < 2:
-        raise ValueError('Szudzik pairing function needs at least 2 numbers as input')
+        raise ValueError('Cantor pairing function needs at least 2 numbers as input')
 
     elif any((n < 0) or (not isinstance(n, int)) for n in numbers):
-        raise ValueError('Szudzik pairing function maps only non-negative integers')
+        raise ValueError('Cantor pairing function maps only non-negative integers')
 
     numbers = deque(numbers)
 
@@ -25,10 +25,7 @@ def pair(*numbers: int) -> int:
     n1 = numbers.popleft()
     n2 = numbers.popleft()
 
-    if n1 != max(n1, n2):
-        mapping = pow(n2, 2) + n1
-    else:
-        mapping = pow(n1, 2) + n1 + n2
+    mapping = (n1 + n2) * (n1 + n2 + 1) / 2 + n2
 
     mapping = int(mapping)
 
@@ -53,18 +50,13 @@ def unpair(number: int, n: int = 2) -> tuple:
     producing the desired n_1, n_2 and n_3.
     """
     if (number < 0) or (not isinstance(number, int)):
-        raise ValueError('Szudzik unpairing function requires a non-negative integer')
+        raise ValueError('Cantor unpairing function requires a non-negative integer')
 
-    if number - pow(floor(sqrt(number)), 2) < floor(sqrt(number)):
+    w = floor((sqrt(8 * number + 1) - 1) / 2)
+    t = (pow(w, 2) + w) / 2
 
-        n1 = number - pow(floor(sqrt(number)), 2)
-        n2 = floor(sqrt(number))
-
-    else:
-        n1 = floor(sqrt(number))
-        n2 = number - pow(floor(sqrt(number)), 2) - floor(sqrt(number))
-
-    n1, n2 = int(n1), int(n2)
+    n2 = int(number - t)
+    n1 = int(w - n2)
 
     if n > 2:
         return unpair(n1, n - 1) + (n2,)
