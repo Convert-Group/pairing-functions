@@ -25,7 +25,7 @@ def pair(*numbers: int) -> int:
     n1 = numbers.popleft()
     n2 = numbers.popleft()
 
-    mapping = (n1 + n2)*(n1 + n2 + 1) / 2 + n2
+    mapping = (n1 + n2) * (n1 + n2 + 1) / 2 + n2
 
     mapping = int(mapping)
 
@@ -44,7 +44,7 @@ def unpair(number: int, n: int = 2) -> tuple:
     For example, to associate a `number` with three non-negative
     integers n_1, n_2, n_3, such that:
 
-    pairing((n_1, n_2, n_3)) = `number`
+    pairing(n_1, n_2, n_3) = `number`
 
     the `number` will first be unpaired to n_p, n_3, then the n_p will be unpaired to n_1, n_2,
     producing the desired n_1, n_2 and n_3.
