@@ -7,24 +7,23 @@ from pairing_functions.szudzik import pair, unpair
 
 class TestSzudzikPairing(object):
 
-    def test_list_pair(self):
+    def test_pair(self) -> None:
 
         assert pair(0, 0) == 0
         assert pair(0, 1) == 1
         assert pair(1, 0) == 2
+        assert pair(2, 2) == 8
         assert pair(3, 4) == 19
         assert pair(92, 23) == 8579
+
+    def test_pair_multiple_numbers(self) -> None:
+
         assert pair(1, 2, 3) == 33
         assert pair(3, 4, 5) == 385
         assert pair(1, 2, 3, 4) == 1126
-
-    def test_tuple_pair(self):
-
-        assert pair(2, 2) == 8
-        assert pair(3, 4) == 19
         assert pair(1, 2, 3, 4, 5) == 1269007
 
-    def test_pair_exceptions(self):
+    def test_pair_exceptions(self) -> None:
 
         with pytest.raises(ValueError):
             assert pair(1)
@@ -41,7 +40,7 @@ class TestSzudzikPairing(object):
 
 class TestSzudzikUnpair(object):
 
-    def test_unpair(self):
+    def test_unpair(self) -> None:
 
         assert unpair(0) == (0, 0)
         assert unpair(1) == (0, 1)
@@ -59,7 +58,7 @@ class TestSzudzikUnpair(object):
         assert unpair(1126, n=3) == (5, 3, 4)
         assert unpair(1126, n=4) == (1, 2, 3, 4)
 
-    def test_unpair_exceptions(self):
+    def test_unpair_exceptions(self) -> None:
 
         with pytest.raises(ValueError):
             assert unpair(0.5)
@@ -70,7 +69,7 @@ class TestSzudzikUnpair(object):
 
 class TestSzudzik(object):
 
-    def test_inverse_property(self):
+    def test_inverse_property(self) -> None:
 
         n1, n2 = unpair(pair(1, 2))
         assert n1 == 1 and n2 == 2
