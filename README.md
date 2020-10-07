@@ -53,7 +53,8 @@ szudzik.unpair(1126)
 cantor.unpair(2705)
 // (69, 4)
 
-# but going back to the initial integers is also possible - just specify how many integers you expect !
+# but going back to the initial integers is also possible
+# just specify how many integers you expect
 
 szudzik.unpair(1126, n=4)
 // (1, 2, 3, 4)
