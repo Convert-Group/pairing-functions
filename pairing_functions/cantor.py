@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from collections import deque
-from math import pow, floor, sqrt
+from math import pow, floor, isqrt
 
 
 def pair(*numbers: int) -> int:
@@ -51,12 +51,14 @@ def unpair(number: int, n: int = 2) -> tuple:
     """
     if (number < 0) or (not isinstance(number, int)):
         raise ValueError('Cantor unpairing function requires a non-negative integer')
-
-    w = floor((sqrt(8 * number + 1) - 1) / 2)
-    t = (pow(w, 2) + w) / 2
-
-    n2 = int(number - t)
-    n1 = int(w - n2)
+    
+    # calculate cantor unpairing using integer square root
+    m = isqrt(25 * (8 * number + 1))
+    w = m // 10
+    if m % 10 < 5: w -= 1
+    t = (w * w + w) // 2
+    n2 = number - t
+    n1 = w - n2
 
     if n > 2:
         return unpair(n1, n - 1) + (n2,)
