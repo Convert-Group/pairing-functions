@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from collections import deque
-from math import pow, floor, sqrt
+from math import pow, floor, isqrt
 
 
 def pair(*numbers: int) -> int:
@@ -55,16 +55,10 @@ def unpair(number: int, n: int = 2) -> tuple:
     if (number < 0) or (not isinstance(number, int)):
         raise ValueError('Szudzik unpairing function requires a non-negative integer')
 
-    if number - pow(floor(sqrt(number)), 2) < floor(sqrt(number)):
-
-        n1 = number - pow(floor(sqrt(number)), 2)
-        n2 = floor(sqrt(number))
-
-    else:
-        n1 = floor(sqrt(number))
-        n2 = number - pow(floor(sqrt(number)), 2) - floor(sqrt(number))
-
-    n1, n2 = int(n1), int(n2)
+    q = isqrt(number)
+    l = number - q * q
+    
+    n1, n2 = (l, q) if l < q else (q, l - q)
 
     if n > 2:
         return unpair(n1, n - 1) + (n2,)
